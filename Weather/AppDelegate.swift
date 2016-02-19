@@ -8,17 +8,38 @@
 
 import UIKit
 import CoreData
+import Foundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // get array of backgrounds
+        let bg = BackgroundManager.init()
+        //randomly select background
+        let random = Int(arc4random_uniform(UInt32(bg.backgrounds.count)))
+        let background = bg.backgrounds[random]
+        // associate image as background
+        let image = UIImage(named: background)
+        
+        let imageview = UIImageView(image: image)
+        imageview.contentMode = .ScaleAspectFill    // fill screen
+        
+        window!.addSubview(imageview)           // add to window
+
+        // center in container
+        var centerImageView = imageview.center
+        centerImageView.x = window!.center.x
+        centerImageView.y = window!.center.y
+        imageview.center = centerImageView
+        
         // Override point for customization after application launch.
         return true
     }
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -62,7 +83,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
+        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("city_list.sqlite")
+        if !NSFileManager.defaultManager().fileExistsAtPath(url.path!) {
+            var preloadURL: NSURL = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource("city_list", ofType: "sqlite")!)    // preload city_list.sqlite if not currently bundled
+            var error:NSError? = nil
+            do {
+                try NSFileManager.defaultManager().copyItemAtURL(preloadURL, toURL: url)
+            }catch {
+                print(error)
+            }
+            
+        }
+    
+        var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
