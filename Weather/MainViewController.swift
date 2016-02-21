@@ -256,7 +256,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // IF AN ERROR OCCURS WHEN CHECKING LOCATION
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         locationManager.stopUpdatingLocation()
-        print(error)
+        print("Location not found, error" + String(error))
         self.performSegueWithIdentifier("locationSender", sender: locationButton)
     }
     

@@ -140,7 +140,7 @@
                         <outlet property="wait" destination="FBb-jR-bQZ" id="ALy-op-dGM"/>
                         <outlet property="weatherIcon" destination="AeA-Nm-TbO" id="YCx-4r-Ru9"/>
                         <segue destination="5a7-hy-Pym" kind="show" identifier="currentWeather" id="YbR-pT-ZNW"/>
-                        <segue destination="5a7-hy-Pym" kind="show" identifier="forecastWeather" id="Q2A-9H-SSY"/>
+                        <segue destination="5a7-hy-Pym" kind="showDetail" identifier="forecastWeather" action="showViewController:sender:" id="Q2A-9H-SSY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -225,7 +225,7 @@
         <!--Details View Controller-->
         <scene sceneID="tYF-CQ-eWo">
             <objects>
-                <viewController id="5a7-hy-Pym" customClass="DetailsViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" id="5a7-hy-Pym" customClass="DetailsViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6vk-ws-DHo"/>
                         <viewControllerLayoutGuide type="bottom" id="Y9h-F3-fv5"/>
@@ -328,7 +328,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vuc-0L-lkr" userLabel="ForecastStackView">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vuc-0L-lkr" userLabel="ForecastStackView">
                                 <rect key="frame" x="0.0" y="101" width="600" height="220"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friday, May 29th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="432-d9-cfY">
@@ -343,10 +343,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LIQ-SU-R44">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIQ-SU-R44">
                                         <rect key="frame" x="0.0" y="70" width="600" height="150"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0rw-U8-vAn">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0rw-U8-vAn">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="Kqf-Oy-agE"/>
@@ -361,7 +361,7 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUC-kb-HAh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUC-kb-HAh">
                                                 <rect key="frame" x="150" y="0.0" width="450" height="150"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="150"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -429,6 +429,6 @@
         <image name="new.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q2A-9H-SSY"/>
+        <segue reference="YbR-pT-ZNW"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -84,7 +84,6 @@ class DetailsViewController: UIViewController {
             precipitationLabel.attributedText = boldText("Precipitation: \t",
                 label: forecast.precipitation)
         }
-        print(tempLabel.text)
     }
 
     // CHANGES TEXT TO BOLDED TITLE
